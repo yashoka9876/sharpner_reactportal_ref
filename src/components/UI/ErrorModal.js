@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React  from 'react';
+import  ReactDOM  from 'react-dom';
 import Card from './Card';
 import Button from './Button';
 import classes from './ErrorModal.module.css';
@@ -24,12 +24,14 @@ const ErroModals=(props)=>{
   </>
 }
 
+
 const ErrorModal = (props) => {
   return (
-    <div>
-      <Backdrop  onConfirm={props.onConfirm} />
-      <ErroModals title={props.title} message={props.message} onConfirm={props.onConfirm} />
-    </div>
+    <>
+      {ReactDOM.createPortal(<Backdrop  onConfirm={props.onConfirm} />,document.getElementById('backdrop'))}
+      
+      {ReactDOM.createPortal(<ErroModals title={props.title} message={props.message} onConfirm={props.onConfirm} />,document.getElementById('modal'))}
+    </>
   );
 };
 
